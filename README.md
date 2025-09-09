@@ -6,16 +6,21 @@
 
 * **MCU:** XIAO ESP32-C6 SoC (dual-core Cortex-A55, Wi-Fi/BT, Linux-capable)
 
-  <img width="auto" height="200" alt="image" src="https://github.com/user-attachments/assets/93b4fa06-bbe1-46a4-bbbc-61eb7910c3b3" />
-  <img width="auto" height="200" alt="image" src="https://github.com/user-attachments/assets/ad684b79-3f96-4360-80c6-31ebb8745015" />
+    <img width="auto" height="200" alt="image" src="https://github.com/user-attachments/assets/93b4fa06-bbe1-46a4-bbbc-61eb7910c3b3" />
+    <img width="auto" height="200" alt="image" src="https://github.com/user-attachments/assets/ad684b79-3f96-4360-80c6-31ebb8745015" />
 
 * **Sensors:**
 
   * MAX30102 – Oximeter & Heart Rate (SpO₂ + HR)
-  * MAX30205 – Human Skin Temperature
 
-     <img width="auto" height="200" alt="image" src="https://github.com/user-attachments/assets/cddb6d25-80e5-4128-9f71-87d094b1067b" />
-     <img width="auto" height="200" alt="image" src="https://github.com/user-attachments/assets/0505348d-5cc2-422d-a15f-0a94faac48a8" />
+    <img width="auto" height="200" alt="image" src="https://github.com/user-attachments/assets/28cd40a6-15fe-4358-bb83-1c2087b71c4a" />
+    <img width="auto" height="200" alt="image" src="https://github.com/user-attachments/assets/00e2713d-bbf1-4c84-8683-0cc38eb209a7" />
+
+
+  * MAX30205 – Human Skin Temperature
+  
+    <img width="auto" height="200" alt="image" src="https://github.com/user-attachments/assets/cddb6d25-80e5-4128-9f71-87d094b1067b" />
+    <img width="auto" height="200" alt="image" src="https://github.com/user-attachments/assets/0505348d-5cc2-422d-a15f-0a94faac48a8" />
 
 ---
 
