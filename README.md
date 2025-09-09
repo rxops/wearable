@@ -1,11 +1,12 @@
 # Wearable + SDK – Healthcare IoT Concept
 
-**Stack:** Rust (embedded + cross-platform via Tauri/C-FFI) + SurrealDB + Candle (if compatible)
+**Stack:** Rust (embedded + cross-platform via Tauri/C-FFI) + SurrealDB (embedded) + Candle (if compatible)
 
 **Hardware Baseline:**
 
 * **MCU:** XIAO ESP32C6 (dual-core Cortex-A55, Wi-Fi/BT, Linux-capable)
-* **Sensors:** MAX30102 PPG (SpO₂ + HR), optional 6-axis IMU, skin temp, GSR, barometer
+* **Sensors:** MAX30102 PPG (SpO₂ + HR),
+  optional 6-axis IMU, skin temp, GSR, barometer etc
 
 ---
 
