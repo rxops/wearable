@@ -1,4 +1,4 @@
-# Wearable – Healthcare IoT Concept
+# Wearable + SDK – Healthcare IoT Concept
 
 **Stack:** Rust (embedded + cross-platform via Tauri/C-FFI) + SurrealDB + Candle (if compatible)
 
