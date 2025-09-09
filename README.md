@@ -1,7 +1,7 @@
 # Wearable - Healthcare Wearable IoT Concept  
 
 Hardware baseline:  
-• Seeed Studio C6 MCU board (dual-core Cortex-A55, Wi-Fi/BT, Linux-capable)  
+• XIAO ESP32C6 MCU board (dual-core Cortex-A55, Wi-Fi/BT, Linux-capable)  
 • MAX30102 PPG sensor (SpO₂ + HR) on a fingertip or wrist pod  
 
 High-level vision:  
