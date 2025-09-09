@@ -1,8 +1,4 @@
-Perfect — since you’re planning for a **generic wrist/shoulder/arm band**, we can simplify and remove IMU, barometer, and extra sensors. Here’s a **cleaned-up adjusted version**:
-
----
-
-# Wearable + SDK – Healthcare IoT Concept
+# Wearable – Healthcare IoT+SDK Concept
 
 **Stack:** Rust (embedded + cross-platform via Tauri/C-FFI) + SurrealDB (embedded) + Candle (if compatible)
 
@@ -115,7 +111,3 @@ Wearable ↔ Wearable (BLE Mesh) ↔ Phone / C6 Bridge ↔ Cloud
 
 **Outcome:**
 A streamlined **band-style wearable + SDK** framework for healthcare and wellness—COPD monitoring, post-op recovery, chronic care, or fitness analytics—without rebuilding connectivity, security, or cloud services.
-
----
-
-Would you like me to **also strip down the AI/analytics section** (e.g. remove A-fib classifier, sleep staging) to match the simpler **band-only sensor set**, or keep them as “future-ready” features?
