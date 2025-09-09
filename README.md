@@ -5,7 +5,7 @@ Hardware baseline:
 • MAX30102 PPG sensor (SpO₂ + HR) on a fingertip or wrist pod  
 
 High-level vision:  
-Create a modular “network-aware” wearable that can operate alone, daisy-chain with other wearables, or delegate cloud connectivity to any nearby phone / hub. The platform targets continuous vital-sign monitoring, early warning scoring and tele-consultation for chronic patients and post-hospital follow-up.
+A modular “network-aware” wearable that can operate alone, daisy-chain with other wearables, or delegate cloud connectivity to any nearby phone / hub. The platform targets continuous vital-sign monitoring, early warning scoring and tele-consultation for chronic patients and post-hospital follow-up.
 
 1. Core biosensing capabilities  
    • SpO₂ ±2 % accuracy, resting HR ±3 bpm via MAX30102  
