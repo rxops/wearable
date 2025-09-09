@@ -1,31 +1,33 @@
+Perfect — since you’re planning for a **generic wrist/shoulder/arm band**, we can simplify and remove IMU, barometer, and extra sensors. Here’s a **cleaned-up adjusted version**:
+
+---
+
 # Wearable + SDK – Healthcare IoT Concept
 
 **Stack:** Rust (embedded + cross-platform via Tauri/C-FFI) + SurrealDB (embedded) + Candle (if compatible)
 
 **Hardware Baseline:**
 
-* **MCU:** XIAO ESP32-C6 SoC (dual-core Cortex-A55, Wi-Fi/BT, Linux-capable)
+* **MCU:** XIAO ESP32-C6 SoC (dual-core Cortex-A55, Wi-Fi/BT, Linux-capable) <img width="auto" height="200" alt="image" src="https://github.com/user-attachments/assets/93b4fa06-bbe1-46a4-bbbc-61eb7910c3b3" /> <img width="auto" height="200" alt="image" src="https://github.com/user-attachments/assets/ad684b79-3f96-4360-80c6-31ebb8745015" />
 
-  <img width="auto" height="200" alt="image" src="https://github.com/user-attachments/assets/93b4fa06-bbe1-46a4-bbbc-61eb7910c3b3" />
-  <img width="auto" height="200" alt="image" src="https://github.com/user-attachments/assets/ad684b79-3f96-4360-80c6-31ebb8745015" />
+* **Sensors:**
 
-
-* **Sensors:** MAX30102 PPG (SpO₂ + HR),
-  optional 6-axis IMU, skin temp, GSR, barometer etc
+  * MAX30102 – Oximeter & Heart Rate (SpO₂ + HR)
+  * MAX30205 – Human Skin Temperature
 
 ---
 
 ## Vision
 
-A modular, network-aware wearable platform for continuous vital-sign monitoring, early warning scoring, and tele-consultation. Devices can operate standalone, mesh with peers, or offload connectivity to a nearby phone or hub. Target use cases: chronic disease follow-up, hospital-at-home, sports rehab.
+A modular, network-aware wearable platform (band form-factor) for continuous vital-sign monitoring, early warning scoring, and tele-consultation. Designed for chronic care follow-up, hospital-at-home, and wellness use cases.
 
 ---
 
 ## 1. Core Sensing
 
 * SpO₂ ±2%, HR ±3 bpm (MAX30102)
-* Motion artifact cancellation via IMU fusion
-* Expandable: temperature, GSR, barometer
+* Skin temperature monitoring (MAX30205)
+* Lightweight motion filtering (no IMU required)
 
 ---
 
@@ -41,8 +43,8 @@ Wearable ↔ Wearable (BLE Mesh) ↔ Phone / C6 Bridge ↔ Cloud
 
 ## 3. Firmware Foundation
 
-* Zephyr RTOS + NimBLE (or FreeRTOS bare-metal)
-* MAX30102 driver + bio-algo (HRV, arrhythmia, calibration)
+* Zephyr RTOS + NimBLE (or FreeRTOS)
+* MAX30102 & MAX30205 drivers + bio-algo (HRV, arrhythmia detection, calibration)
 * TinyML (TensorFlow Lite Micro) for anomaly scoring
 * OTA/DFU over BLE
 
@@ -54,7 +56,7 @@ Wearable ↔ Wearable (BLE Mesh) ↔ Phone / C6 Bridge ↔ Cloud
 * Raspberry Pi option for headless bridge mode
 * Rules engine (Node-RED style) for no-code alerts
 
-  > Example: HR >120 bpm for 3 min → push notification
+  > Example: “SpO₂ < 90% for 5 min → push notification”
 
 ---
 
@@ -70,7 +72,7 @@ Wearable ↔ Wearable (BLE Mesh) ↔ Phone / C6 Bridge ↔ Cloud
 ## 6. AI / Analytics
 
 * Personalized baseline drift detection
-* Sleep staging (PPG + IMU)
+* Sleep/wellness insights from PPG patterns
 * A-fib classifier (irregular R-R intervals)
 * Cohort trend explorer for clinicians
 
@@ -86,34 +88,34 @@ Wearable ↔ Wearable (BLE Mesh) ↔ Phone / C6 Bridge ↔ Cloud
 
 ## 8. Deployment Scenarios
 
-* **Hospital-at-home:** bedside hub uploads continuous streams
-* **Care homes:** multiple pods mesh to one ceiling bridge
-* **Sports rehab:** coach tablet sync in real time, offline-capable
+* **Hospital-at-home:** bedside hub streams vitals continuously
+* **Care homes:** multiple bands mesh to one ceiling bridge
+* **Wellness/Sports rehab:** sync to coach tablet in real time, no cloud needed
 
 ---
 
 ## 9. Developer Resources
 
-* Reference repo: KiCad hardware, firmware submodules, Dockerized cloud
+* Reference repo: hardware (KiCad), firmware submodules, Dockerized cloud stack
 * Jupyter notebooks for analytics
-* Sample HL7/FHIR messages for EMR testing
-* Community hub: pinouts, calculators, compliance guides
+* Sample HL7/FHIR messages for EMR integration
+* Community hub: pinouts, power-budget calculators, compliance checklists
 
 ---
 
 ## 10. MVP Checklist
 
-1. MAX30102 + LIS3DH IMU → ESP32C6 via I²C/SPI
+1. MAX30102 + MAX30205 → ESP32C6 via I²C/SPI
 2. Zephyr + NimBLE + battery gauge + flash buffer
-3. Flutter app bridging MQTT → cloud
-4. Grafana dashboard: live HR/SpO₂ + threshold alert
-5. OTA update demo: push tachycardia detection model
+3. Flutter bridge app (MQTT → cloud demo)
+4. Grafana dashboard: live HR/SpO₂/Temp + threshold alert
+5. OTA update demo with anomaly detection model
 
 ---
 
 **Outcome:**
-An open, mesh-ready framework for diverse healthcare and performance-monitoring applications—COPD management, fall detection, post-op recovery, or sports analytics—without reinventing connectivity, security, or cloud infrastructure.
+A streamlined **band-style wearable + SDK** framework for healthcare and wellness—COPD monitoring, post-op recovery, chronic care, or fitness analytics—without rebuilding connectivity, security, or cloud services.
 
 ---
 
-Would you like me to **make it even shorter (pitch-deck style, 1–2 lines per section)**, or keep this **technical but streamlined version**?
+Would you like me to **also strip down the AI/analytics section** (e.g. remove A-fib classifier, sleep staging) to match the simpler **band-only sensor set**, or keep them as “future-ready” features?
