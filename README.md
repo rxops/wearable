@@ -6,7 +6,7 @@
 
 * **MCU:** XIAO ESP32C6 (dual-core Cortex-A55, Wi-Fi/BT, Linux-capable)
 
-  <img width="985" height="336" alt="image" src="https://github.com/user-attachments/assets/93b4fa06-bbe1-46a4-bbbc-61eb7910c3b3" />
+  <img width="auto" height="200" alt="image" src="https://github.com/user-attachments/assets/93b4fa06-bbe1-46a4-bbbc-61eb7910c3b3" />
 
 * **Sensors:** MAX30102 PPG (SpO₂ + HR),
   optional 6-axis IMU, skin temp, GSR, barometer etc
