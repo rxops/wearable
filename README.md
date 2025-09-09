@@ -8,7 +8,7 @@
 
 * **Sensors:**
 
-  * MAX30102 – Oximeter & Heart Rate (SpO₂ + HR)
+  * MAX30102 – Oximeter & Heart Rate (SpO₂ + HR) <img width="auto" height="150" alt="image" src="https://github.com/user-attachments/assets/cddb6d25-80e5-4128-9f71-87d094b1067b" />
   * MAX30205 – Human Skin Temperature
 
 ---
