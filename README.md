@@ -4,7 +4,7 @@
 
 **Hardware Baseline:**
 
-* **MCU:** XIAO ESP32C6 (dual-core Cortex-A55, Wi-Fi/BT, Linux-capable)
+* **MCU:** XIAO ESP32-C6 SoC (dual-core Cortex-A55, Wi-Fi/BT, Linux-capable)
 
   <img width="auto" height="200" alt="image" src="https://github.com/user-attachments/assets/93b4fa06-bbe1-46a4-bbbc-61eb7910c3b3" />
   <img width="auto" height="200" alt="image" src="https://github.com/user-attachments/assets/ad684b79-3f96-4360-80c6-31ebb8745015" />
