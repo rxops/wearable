@@ -11,6 +11,7 @@
   * 320KB SRAM, 4MB Flash
   * Power: Deep sleep @ 7μA, Active BLE @ 15mA
   * Hardware crypto accelerator for medical-grade security
+  * Dimension: 21 x 17.8 mm
 
     <img width="auto" height="200" alt="image" src="assets/487220664-93b4fa06-bbe1-46a4-bbbc-61eb7910c3b3.png" />
     <img width="auto" height="200" alt="image" src="assets/487221395-ad684b79-3f96-4360-80c6-31ebb8745015.png" />
