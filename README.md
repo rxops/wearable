@@ -13,7 +13,7 @@ Key objectives:
 
 This approach aims to create a practical, affordable solution for the healthcare industry.
 
-## Hardware Components
+## Hardware Components and Sensor Roles
 
 The hardware architecture is designed for cost-effectiveness and adaptability, using standard, affordable components that can be easily sourced and integrated. This ensures the prototype is functional and scalable for commercial healthcare use.
 
@@ -22,12 +22,14 @@ The hardware architecture is designed for cost-effectiveness and adaptability, u
 
     <img width="auto" height="200" alt="image" src="assets/487220664-93b4fa06-bbe1-46a4-bbbc-61eb7910c3b3.png" />
     <img width="auto" height="200" alt="image" src="assets/487221395-ad684b79-3f96-4360-80c6-31ebb8745015.png" />
-* **Pulse Oximeter and Heart Rate Sensor**: Measures blood oxygen levels and heart rate using light-based technology.
+
+### Sensors
+* **Pulse Oximeter and Heart Rate Sensor**: Measures blood oxygen levels and heart rate using light-based technology. Role: Main tool for heart and circulation monitoring. Functions: Captures signals to determine heart rate and oxygen levels, detects irregularities, and supports early alerts.
 
     <img width="auto" height="200" alt="image" src="assets/487228208-28cd40a6-15fe-4358-bb83-1c2087b71c4a.png" />
     <img width="auto" height="200" alt="image" src="assets/487228916-00e2713d-bbf1-4c84-8683-0cc38eb209a7.png" />
 
-* **Body Temperature Sensor**: Tracks skin temperature for detecting fevers and monitoring thermal changes.
+* **Body Temperature Sensor**: Tracks skin temperature for detecting fevers and monitoring thermal changes. Role: Monitors temperature for infection detection and metabolic insights. Functions: Measures skin temperature to identify fevers, track patterns, and provide context for other vital signs.
 
     <img width="auto" height="200" alt="image" src="assets/487226981-cddb6d25-80e5-4128-9f71-87d094b1067b.png" />
     <img width="auto" height="200" alt="image" src="assets/487227354-0505348d-5cc2-422d-a15f-0a94faac48a8.png" />
@@ -37,47 +39,22 @@ The hardware architecture is designed for cost-effectiveness and adaptability, u
 * **Pulse Oximeter and Heart Rate Sensor**: About 5.6mm x 3.3mm x 1.55mm, small enough to fit discreetly on the device.
 * **Body Temperature Sensor**: Roughly 3mm x 3mm x 0.9mm, ultra-compact for precise placement.
 
-## Wearable Form and Conceptual Design
+### Possible Device Dimensions
 
-The wearable device is designed as a simple, generic band for the arm or upper body, suitable for continuous health monitoring in professional healthcare settings. The band is made from flexible, durable materials, adjustable to fit different sizes and adaptable to various healthcare scenarios.
+The wearable device can be configured in different sizes for various use cases, balancing compactness with functionality.
 
-### Conceptual Design
-- **Shape**: Rectangular or oval body attached to a soft band.
-- **Sensors**: Placed for optimal skin contact.
-- **Features**: Lights for status, vibration for alerts.
-- **Finish**: Simple casing, lightweight, with basic water resistance.
-- **Power**: Rechargeable battery lasting several days.
-- **Optional Display**: A small screen could be added in future versions for showing data, but the core design focuses on sensor-based monitoring without relying on visual output.
+#### Without Band (Main Body Only)
+- **Compact Version**: 30mm x 15mm x 8mm – Ideal for minimal, discreet monitoring in tight spaces or as a clip-on module.
+- **Standard Version**: 40mm x 20mm x 10mm – Suitable for general wear, housing all components comfortably.
 
-This design is tailored for the commercial healthcare industry, prioritizing reliability, cost-effectiveness, and ease of integration into clinical workflows.
+#### With Band Strip
+- **Full Wearable (Small)**: Main body 40mm x 20mm x 10mm + band 200mm x 25mm x 2mm – Adjustable arm band for everyday use, lightweight at around 25-30g.
+- **Full Wearable (Large)**: Main body 50mm x 25mm x 12mm + band 250mm x 30mm x 2mm – For broader coverage or additional features, weighing 35-40g.
 
-## Data Collection
+These dimensions ensure cost-effective design, easy fabrication, and adaptability to different body sizes and healthcare scenarios.
 
-Wearable devices can continuously gather key health metrics in real-time, offering insights into a person's physical condition. Main data types include:
-
-* **Heart Rate**: Tracks beats per minute to monitor cardiovascular health and detect irregularities.
-* **Blood Oxygen Levels**: Measures oxygen saturation in the blood to identify potential breathing issues.
-* **Body Temperature**: Records skin temperature to spot fevers or temperature-related changes.
-* **Heart Rate Variability**: Analyzes heart rate patterns to assess stress and recovery.
-* **Activity and Movement**: Monitors physical activity, energy use, and movement patterns for fitness and health tracking.
-
-These measurements are taken non-invasively and continuously, allowing for proactive health management.
-
-## Sensor Roles
-
-Each sensor has a specific function in collecting health data:
-
-* **Pulse Oximeter and Heart Rate Sensor**:
-  - **Role**: Main tool for heart and circulation monitoring.
-  - **Functions**: Captures signals to determine heart rate and oxygen levels. Helps detect heart rhythm issues and supports early alerts for cardiovascular problems.
-
-* **Body Temperature Sensor**:
-  - **Role**: Monitors temperature for infection detection and metabolic insights.
-  - **Functions**: Measures skin temperature to identify fevers, track daily temperature patterns, and provide context for other health indicators.
-
-* **Microcontroller**:
-  - **Role**: Core processor and communication center.
-  - **Functions**: Processes sensor data, manages power, handles wireless connections, and coordinates data sharing with external systems.
+### Data Collection
+The device continuously gathers key health metrics in real-time: heart rate, blood oxygen levels, body temperature, heart rate variability, and activity data. These non-invasive measurements enable proactive health management.
 
 ## System Integration
 
@@ -124,13 +101,15 @@ The wearable supports various health needs by using collected data for monitorin
 
 These uses highlight the device's role in preventive and specialized care.
 
-## Usage Environments
+## Future Development
 
-* **Home Care**: Direct data streaming to patient monitoring systems.
-* **Healthcare Facilities**: Networked devices connect to central monitoring.
-* **Personal Health**: Syncs with apps for fitness and health logging.
-* **Research**: Secure data channels for studies and analysis.
-* **Emergency Situations**: Quick alerts for critical events in remote areas.
+Once the prototype is complete, the next steps include:
+- Designing and fabricating a custom PCB with integrated SMD modules for improved efficiency and reduced costs.
+- Expanding the SDK with more features for broader healthcare integrations.
+- Testing in real-world clinical settings for validation and refinements.
+- Exploring partnerships for commercial production and distribution.
+
+Contributions and feedback are welcome to advance this project.
 
 ## Summary
 
