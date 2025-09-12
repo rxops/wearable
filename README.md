@@ -1,6 +1,22 @@
 # Wearable Health Monitor IoT Device and SDK for Healthcare
 
-A compact, connected wearable device for tracking vital signs, providing early health alerts, and supporting remote consultations in commercial healthcare settings. Includes a software development kit (SDK) for easy integration with other healthcare systems, apps, and platforms. Ideal for managing chronic conditions, home-based care, and general wellness.
+Introducing the Wearable Health Monitor: a compact IoT device designed to revolutionize healthcare by continuously tracking vital signs, delivering early health alerts, and enabling remote consultations. Paired with our comprehensive SDK, it seamlessly integrates with healthcare systems for enhanced patient care in chronic management, home-based recovery, and wellness monitoring.
+
+## Table of Contents
+
+- [Project Goals](#project-goals)
+- [Hardware Components and Sensor Roles](#hardware-components-and-sensor-roles)
+- [Module Dimensions](#module-dimensions)
+- [Possible Device Dimensions](#possible-device-dimensions)
+- [Optional Features](#optional-features)
+- [Data Collection](#data-collection)
+- [System Integration](#system-integration)
+- [Software Development Kit (SDK)](#software-development-kit-sdk)
+- [Applications](#applications)
+- [Future Development](#future-development)
+- [Contributing](#contributing)
+- [License](#license)
+- [Summary](#summary)
 
 ## Project Goals
 
@@ -20,16 +36,23 @@ The hardware architecture is designed for cost-effectiveness and adaptability, u
 ### Microcontroller
 * **ESP32-C6 Module**: A small, energy-efficient processor with wireless features for handling sensor data and connectivity.
 
-    <img width="auto" height="200" alt="image" src="assets/487220664-93b4fa06-bbe1-46a4-bbbc-61eb7910c3b3.png" />
     <img width="auto" height="200" alt="image" src="assets/487221395-ad684b79-3f96-4360-80c6-31ebb8745015.png" />
+    <img width="auto" height="200" alt="image" src="assets/XIAO-ESP32C6-4.png" />
+    <img width="auto" height="200" alt="image" src="assets/F6EL5HNM3ZWC6J3.png" />
 
 ### Sensors
-* **Pulse Oximeter and Heart Rate Sensor**: Measures blood oxygen levels and heart rate using light-based technology. Role: Main tool for heart and circulation monitoring. Functions: Captures signals to determine heart rate and oxygen levels, detects irregularities, and supports early alerts.
+* **Pulse Oximeter and Heart Rate Sensor**
+  - **Technology**: Measures blood oxygen levels and heart rate using light-based technology.
+  - **Role**: Main tool for heart and circulation monitoring.
+  - **Functions**: Captures signals to determine heart rate and oxygen levels, detects irregularities, and supports early alerts.
 
     <img width="auto" height="200" alt="image" src="assets/487228208-28cd40a6-15fe-4358-bb83-1c2087b71c4a.png" />
     <img width="auto" height="200" alt="image" src="assets/487228916-00e2713d-bbf1-4c84-8683-0cc38eb209a7.png" />
 
-* **Body Temperature Sensor**: Tracks skin temperature for detecting fevers and monitoring thermal changes. Role: Monitors temperature for infection detection and metabolic insights. Functions: Measures skin temperature to identify fevers, track patterns, and provide context for other vital signs.
+* **Body Temperature Sensor**
+  - **Technology**: Tracks skin temperature for detecting fevers and monitoring thermal changes.
+  - **Role**: Monitors temperature for infection detection and metabolic insights.
+  - **Functions**: Measures skin temperature to identify fevers, track patterns, and provide context for other vital signs.
 
     <img width="auto" height="200" alt="image" src="assets/487226981-cddb6d25-80e5-4128-9f71-87d094b1067b.png" />
     <img width="auto" height="200" alt="image" src="assets/487227354-0505348d-5cc2-422d-a15f-0a94faac48a8.png" />
@@ -43,15 +66,29 @@ The hardware architecture is designed for cost-effectiveness and adaptability, u
 
 The wearable device can be configured in different sizes for various use cases, balancing compactness with functionality.
 
-#### Without Band (Main Body Only)
-- **Compact Version**: 30mm x 15mm x 8mm – Ideal for minimal, discreet monitoring in tight spaces or as a clip-on module.
-- **Standard Version**: 40mm x 20mm x 10mm – Suitable for general wear, housing all components comfortably.
-
-#### With Band Strip
-- **Full Wearable (Small)**: Main body 40mm x 20mm x 10mm + band 200mm x 25mm x 2mm – Adjustable arm band for everyday use, lightweight at around 25-30g.
-- **Full Wearable (Large)**: Main body 50mm x 25mm x 12mm + band 250mm x 30mm x 2mm – For broader coverage or additional features, weighing 35-40g.
+| Configuration | Dimensions | Weight | Use Case |
+|---------------|------------|--------|----------|
+| Without Band - Compact | 30mm x 15mm x 8mm | - | Minimal, discreet monitoring in tight spaces or as a clip-on module |
+| Without Band - Standard | 40mm x 20mm x 10mm | - | General wear, housing all components comfortably |
+| With Band - Small | Main body 40mm x 20mm x 10mm + band 200mm x 25mm x 2mm | 25-30g | Adjustable arm band for everyday use |
+| With Band - Large | Main body 50mm x 25mm x 12mm + band 250mm x 30mm x 2mm | 35-40g | For broader coverage or additional features |
 
 These dimensions ensure cost-effective design, easy fabrication, and adaptability to different body sizes and healthcare scenarios.
+
+## Optional Features
+
+### Display Integration
+For future versions requiring visual output, a small round display can be integrated. The Seeed Studio Round Display for XIAO is a compatible option:
+
+<img width="auto" height="200" alt="Seeed Studio Round Display" src="assets/rounddisplay.jpg" />
+<img width="auto" height="200" alt="Seeed Studio Round Display Pinout" src="assets/round-pinout.png" />
+
+- **Specifications**: 1.28-inch round capacitive touch screen, 240×240 resolution, 65K colors, 39mm diameter.
+- **Features**: Onboard RTC, battery charging, TF card slot, suitable for wearable projects.
+- **Compatibility**: Works with ESP32-C6 and other XIAO modules for plug-and-play setup.
+- **Setup Guide**: Refer to the [Seeed Studio getting started guide](https://wiki.seeedstudio.com/get_start_round_display/) for hardware preparation, software installation, and example demos.
+
+This optional display enhances user interaction while maintaining the device's focus on sensor-based monitoring.
 
 ### Data Collection
 The device continuously gathers key health metrics in real-time: heart rate, blood oxygen levels, body temperature, heart rate variability, and activity data. These non-invasive measurements enable proactive health management.
@@ -110,6 +147,14 @@ Once the prototype is complete, the next steps include:
 - Exploring partnerships for commercial production and distribution.
 
 Contributions and feedback are welcome to advance this project.
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details on how to get started.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Summary
 
