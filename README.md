@@ -3,7 +3,7 @@
 Introducing the Wearable Health Monitor: a compact IoT device designed to revolutionize healthcare by continuously tracking vital signs, delivering early health alerts, and enabling remote consultations. Paired with our comprehensive SDK, it seamlessly integrates with healthcare systems for enhanced patient care in chronic management, home-based recovery, and wellness monitoring.
 
 ## Table of Contents
-
+ 
 - [Project Goals](#project-goals)
 - [Hardware Components and Sensor Roles](#hardware-components-and-sensor-roles)
 - [Module Dimensions](#module-dimensions)
