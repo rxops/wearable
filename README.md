@@ -1,313 +1,156 @@
-# Wearable – Healthcare IoT+SDK Concept
+# Wearable Health Monitor (Prototype + SDK)
 
+Simple wearable device concept for collecting basic vital data and sending it to other systems. Includes an SDK so software teams can ingest readings, store them, trigger alerts, or build dashboards. First phase: working prototype. Later phase: custom PCB.
 
-> A modular, network-aware wearable platform (band form-factor) for continuous vital-sign monitoring, early warning scoring, and tele-consultation. Designed for chronic care follow-up, hospital-at-home, and wellness use cases.
+## Project Scope
 
----
+Near term:
+- Build a bench prototype with off‑the‑shelf parts.
+- Validate sensor signal quality and power profile.
+- Define simple data model (timestamp + metric + quality flag).
 
-**Hardware Baseline:**
+After validation:
+- Design custom PCB (SMD integration, reduced footprint).
+- Reduce BOM cost and size.
+- Prepare for enclosure + basic regulatory path.
 
-* **MCU:** XIAO ESP32-C6 SoC (RISC-V 160MHz, Wi-Fi 6/BLE 5.3, Ultra-low power)
-  * 320KB SRAM, 4MB Flash
-  * Power: Deep sleep @ 7μA, Active BLE @ 15mA
-  * Hardware crypto accelerator for medical-grade security
-  * Dimension: 21 x 17.8 mm
+Design principles: keep it small, low cost, reusable in different mounting formats, and easy to integrate.
+
+## Hardware
+
+### Microcontroller
+* **ESP32-C6 module**: Wireless + compute; collects sensor data and sends packets.
 
     <img width="auto" height="200" alt="image" src="assets/487220664-93b4fa06-bbe1-46a4-bbbc-61eb7910c3b3.png" />
     <img width="auto" height="200" alt="image" src="assets/487221395-ad684b79-3f96-4360-80c6-31ebb8745015.png" />
-
-  https://wiki.seeedstudio.com/xiao_esp32c6_getting_started/
-* **Sensors:**
-
-  * MAX30102 – Oximeter & Heart Rate (SpO₂ + HR)
+* **Pulse oximeter / heart rate sensor**: SpO2 + pulse from PPG.
 
     <img width="auto" height="200" alt="image" src="assets/487228208-28cd40a6-15fe-4358-bb83-1c2087b71c4a.png" />
     <img width="auto" height="200" alt="image" src="assets/487228916-00e2713d-bbf1-4c84-8683-0cc38eb209a7.png" />
 
+* **Skin temperature sensor**: Surface temperature trend.
 
-  * MAX30205 – Human Skin Temperature
-  
     <img width="auto" height="200" alt="image" src="assets/487226981-cddb6d25-80e5-4128-9f71-87d094b1067b.png" />
     <img width="auto" height="200" alt="image" src="assets/487227354-0505348d-5cc2-422d-a15f-0a94faac48a8.png" />
 
----
+### Approximate Module Sizes
+* ESP32-C6: ~18 × 25.5 × 2.8 mm
+* PPG sensor: ~5.6 × 3.3 × 1.6 mm
+* Temp sensor: ~3 × 3 × 0.9 mm
 
-## 1. Core Sensing
+## Physical Concept
 
-**Photoplethysmography:**
-* Raw IR/R capture with moving average smoothing
-* HRV calculation (RMSSD) with baseline drift compensation
-* Arrhythmia classification capabilities
+Initial form: simple band or patch mount on arm / upper body. Flexible strap or adhesive cradle. Focus on sensor contact, stable pressure, and easy removal.
 
-**SpO₂ Monitoring:**
-* Ratio-of-ratios calculation with lookup tables
-* Adaptive calibration with ML-based correction
-* Cohort-based normalization
+Core elements:
+- Enclosure: small shell holding MCU, battery, sensors.
+- Contact window: opening or lens for PPG emitter / detector.
+- Haptic + LED (optional) for local status.
+- Charging: wired (USB-C) or pogo pads in early phase; future: magnetic dock.
+- Optional display (deferred).
 
-**Temperature Sensing:**
-* 1 Hz sampling with skin vs ambient compensation
-* Multi-sensor fusion for accuracy
-* Outlier suppression using median-of-last-N
+## Data Points (Prototype Phase)
+Minimum set:
+* Heart rate (bpm)
+* SpO2 (%)
+* Skin temp (°C)
+* Raw PPG (optional stream)
+* Motion flag / movement level (optional later)
 
-**Motion Tracking:**
-* IMU integration for activity recognition
-* Energy expenditure calculation
-* Movement artifact compensation
+Each sample: timestamp, value(s), quality / confidence flag.
 
-**Core Algorithms:**
-* Rolling window (8–16 samples) smoothing
-* Peak interval estimation for heart rate
-* SpO₂ estimation with perfusion index
-* Adaptive dynamic sampling based on variance
-
----
-
-## 2. Networking Architecture
-
-**Communication Stack:**
-* BLE peripheral with `esp32-nimble` for advertising and GATT characteristics
-* BLE Mesh support via `btmesh-rs` for multi-device environments
-* Wi-Fi 6 direct upload capabilities for high-bandwidth scenarios
-* Zenoh edge fabric for distributed computing
-
-**Data Protocol:**
-* `postcard` serialized structs (≤ 64 bytes per frame)
-* COBS encoding for UART debugging
-* lz4_flex compression for burst events
-* Frame signing with Ed25519
-
-**Bridge Implementation:**
-* Rust daemon using `btleplug` for BLE connectivity
-* MQTT publishing via `rumqttc` with topic structure: `wearable/{device_id}/vitals`
-* HTTP fallback with `/ingest` endpoint
-* Exponential backoff retry (max 60s) with local ring buffer persistence
-
----
-
-## 3. Firmware Architecture
-
-**Runtime Environment:**
-* `embassy` async runtime with `embassy-executor`
-* I²C communication (async/blocking hybrid)
-* GPIO control for LED indicators
-* Timer-based sampling cadence
-
-**Driver Stack:**
-* Modular sensor drivers (`max30102`, `max30205` crates)
-* `heapless::spsc::Queue` for RAM buffering
-* Circular flash log with fixed-size blocks
-* `smoltcp` for network streaming
-
-**Power Management:**
-* Duty-cycled LED operation
-* Adaptive sampling rates based on signal variance (<2% threshold)
-* Deep sleep modes between sampling windows
-* Target: <2.5 mA average current (1Hz temp, 25Hz PPG bursts)
-
-**Reliability:**
-* Watchdog timer with 5s sensor stall detection
-* Brownout recovery mechanisms
-* Error recovery with lightweight enum handling
-* `defmt` logging for debugging
-
----
-
-## 4. Bridge Layer
-
-**Core Functionality:**
-* BLE scanning, connection, and GATT subscription management
-* Frame validation with Ed25519 signatures
-* Local caching with SurrealDB or JSON fallback
-* MQTT/HTTP upstream publishing
-
-**Advanced Features:**
-* Rhai rules engine for complex event processing
-* gRPC support via `tonic`
-* Multi-device session management
-* Tauri-based GUI for user interaction
-
-**Alert System:**
-* Inline threshold evaluation (SpO₂ < 90, Temp > 38°C)
-* Configurable alert rules
-* Webhook notifications
-
----
-
-## 5. Cloud Infrastructure
-
-**API Layer:**
-* `axum` REST API with endpoints:
-  * `POST /ingest` - bulk frame ingestion
-  * `GET /vitals/latest` - current readings
-  * `GET /vitals/{device}` - device history
-* WebSocket streaming for real-time data
-* GraphQL API via `async-graphql`
-
-**Storage:**
-* SurrealDB with timeseries schema
-* Delta Lake for analytics workloads
-* DataFusion for SQL analytics
-* Schema: `vitals { device_id, ts, hr, spo2, temp, flags }`
-
-**Frontend:**
-* Leptos reactive dashboard
-* Real-time vitals display
-* Historical charts (15-min, 1-hour, 24-hour views)
-* HTMX for progressive enhancement
-
-**Background Services:**
-* Alert scanning (last N minutes window)
-* Data aggregation pipelines
-* Export services for training datasets
-
----
-
-## 6. AI/ML Analytics
-
-**Signal Processing:**
-* Exponential moving average baseline tracking
-* Z-score anomaly detection
-* Quality flagging for artifacts (flatline/saturation)
-* HRV metrics (RMSSD, pNN50)
-
-**Machine Learning:**
-* Candle/burn runtime for on-device inference
-* Arrhythmia classification models
-* Sleep staging algorithms
-* Personalized baseline adaptation
-
-**Cohort Analytics:**
-* Multi-device pattern recognition
-* Population health insights
-* Predictive alerting based on trends
-
----
-
-## 7. Security & Privacy
-
-**Cryptographic Stack:**
-* AES-256-GCM for session encryption
-* Ed25519 for signatures (firmware & frames)
-* Argon2 for key derivation
-* SHA-256/BLAKE3 for integrity
-* `zeroize` for secure memory clearing
-
-**Post-Quantum Readiness:**
-* X25519 + Kyber768 hybrid for TLS
-* Dilithium3 dual-signing for firmware
-* SPHINCS+ for immutable audit logs
-
-**Transport Security:**
-* BLE pairing with passkey authentication
-* TLS via `rustls` for all network communication
-* Noise protocol for enhanced pairing security
-
-**Compliance Features:**
-* Differential privacy mechanisms
-* Audit logging (append-only)
-* FHIR façade for interoperability
-* Encrypted storage at rest
-
----
-
-## 8. Safety & Reliability
-
-**Firmware Safety:**
-* Version rollback protection
-* Signed firmware bundles
-* OTA update validation
-* Calibration persistence
-
-**Formal Methods:**
-* Property testing with `proptest`
-* Formal verification with kani/prusti
-* NEWS2 scoring implementation
-* Redundancy voting logic
-
-**Quality Assurance:**
-* Unit tests for sensor parsers
-* Integration tests with loopback simulation
-* Hardware-in-the-loop testing
-* Performance benchmarking
-
----
-
-## 9. Deployment Scenarios
-
-* **Hospital-at-home:** Continuous streaming to bedside hub
-* **Care homes:** Multi-band mesh networking to ceiling bridges
-* **Wellness/Sports:** Direct sync to coach tablets, offline-capable
-* **Remote monitoring:** Cloud-based dashboards with alert escalation
-* **Clinical trials:** Research-grade data collection with audit trails
-
----
-
-## 10. Developer Resources
-
-**Repository Structure:**
+### Sample Data Packet (JSON)
+```json
+{
+    "ts": "2025-09-12T10:15:23.412Z",
+    "hr_bpm": 72,
+    "spo2_pct": 97.4,
+    "skin_temp_c": 34.1,
+    "quality": "ok",
+    "raw_ppg_ref": "ppg/2025/09/12/10/15/23_412.bin"
+}
 ```
-workspace/
-  firmware/      # ESP32-C6 firmware and drivers
-  bridge/        # BLE-to-cloud relay daemon
-  cloud/         # Backend API and dashboard
-  shared/        # Common types and protocols
-  sdk/           # Developer SDK and examples
-  docs/          # API documentation and guides
-```
+Notes:
+* `raw_ppg_ref` optional; may point to a chunk file if streaming disabled.
+* `quality` simple states: ok | motion | low_signal | error.
 
-**Development Tools:**
-* `probe-rs` for flashing and debugging
-* `espup` for toolchain management
-* `defmt-print` for structured logging
-* Cross-compilation support
+## Component Roles
+* PPG sensor: light signal → pulse, SpO2, variability estimates.
+* Temp sensor: skin temp trend, helps contextualize other readings.
+* MCU (ESP32-C6): scheduling, preprocessing, wireless, power states.
+* Battery + power circuit: supply + charging.
+* Optional haptics / LED: minimal user feedback.
 
-**CI/CD Pipeline:**
-* Build verification
-* Clippy linting
-* Format checking
-* Unit/integration tests
-* Hardware matrix testing
-* Fuzz testing
-* Performance benchmarks
+## System Architecture (Draft)
+Layers:
+1. Sensing (PPG, temp)
+2. Sampling + preprocessing (filtering, averaging)
+3. Packet builder (JSON / binary frame)
+4. Transport (BLE GATT; Wi‑Fi / MQTT optional later)
+5. Edge gateway / app (receives, validates, forwards)
+6. Storage / analytics (out of scope here)
 
----
+Power strategy: duty cycle sensors, burst transmit, low-power idle.
 
-## 11. Performance Specifications
+## SDK (Planned)
+Deliverables:
+* Data model (JSON schema + minimal FHIR mapping note)
+* Reference ingestion API (REST)
+* Simple BLE client example
+* Language helpers (Python + JavaScript first)
+* Alert hook interface (webhook stub)
 
-* **Power Consumption:** <2.5 mA average (configurable sampling)
-* **HR Calculation Latency:** <250 ms from sample arrival
-* **BLE Packet Loss:** <1% with 5s retry window
-* **Buffer Capacity:** ≥30 minutes offline tolerance
-* **Firmware Size:** <180 KB initial image
-* **Sampling Rates:** 1-100 Hz configurable
-* **Data Throughput:** 10-500 Hz aggregate sensor data
+Focus: keep surface small; enable quick prototype integrations.
 
----
+## Prototype Roadmap (Draft)
+Phase 0: Bench bring-up (dev boards, log raw signals)
+Phase 1: Basic firmware loop (sampling + BLE broadcast)
+Phase 2: Add temp + packet format + gateway script
+Phase 3: Power tuning (duty cycle, sleep modes)
+Phase 4: Rev A custom PCB (core + headers)
+Phase 5: Rev B shrink + improved enclosure trial
+Phase 6: Small pilot batch (<=25 units)
 
-## 12. Technical Roadmap
+## Risks & Open Questions
+* Motion artifacts: need filtering strategy + quality flag thresholds.
+* Skin temp lag vs core temp: documentation clarity required.
+* Battery life target (goal? 48h continuous?) not yet fixed.
+* BLE vs Wi-Fi coexistence power cost not characterized.
+* Enclosure sealing vs sensor window condensation.
+* Regulatory path (medical vs wellness) still undecided.
+* Data privacy model if cloud ingestion added later.
 
-**Infrastructure Evolution:**
-* Multi-tenant organization boundaries
-* High-availability ingest clusters
-* Edge federation with zenoh
-* Rolling firmware updates
-* Fleet orchestration
+## Immediate Next Steps
+1. Select exact PPG breakout + temp breakout.
+2. Write minimal firmware: init sensors, sample HR/SpO2, print over serial.
+3. Decide packet frequency (e.g. 1 Hz summary, optional raw buffer every 30 s).
+4. Draft JSON schema file.
+5. Simple Python receiver (BLE or serial) to log JSON lines.
+6. Measure idle + active current (multimeter or INA219).
+7. Record 10 min motion vs still dataset for quality logic.
 
-**Feature Expansion:**
-* Additional sensor modalities (ECG, EEG)
-* Environmental monitoring
-* Medication adherence tracking
-* Fall detection
-* Voice biomarkers
+## Nice To Have (Later)
+* MQTT bridge example.
+* Web dashboard stub.
+* Basic over-the-air update flow.
+* HRV derivation from PPG intervals.
+* Simple alert rule engine (threshold + duration).
 
-**Platform Integration:**
-* FHIR/HL7 healthcare standards
-* Apple HealthKit/Google Fit
-* Electronic Health Records (EHR)
-* Telemedicine platforms
-* Research data repositories
+## Example Use Cases
+* Remote monitoring (home recovery)
+* Chronic condition tracking
+* Elder support (basic vitals + trend flags)
+* Research data collection
+* Integration testbed for health platforms
 
----
+## Deployment Contexts
+* Home recovery
+* Clinic trial kits
+* Assisted living
+* Developer lab / sandbox
+* Future: multi-device gateway setups
 
-**Outcome:**
-A comprehensive **band-style wearable + SDK** framework for healthcare and wellness—supporting COPD monitoring, post-op recovery, chronic care, and fitness analytics—built entirely in **Rust** with production-ready connectivity, security, and cloud
+## Summary
+Prototype path: prove sensing + data pipeline, then shrink into custom PCB and light SDK so others can plug it in fast.
+
+Scope is intentionally narrow: a small, low-cost, reusable vital capture node.
