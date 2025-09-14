@@ -172,8 +172,6 @@ Choose your path based on your role and interests:
    - Multi-device studies and datasets
    - Clinical validation studies
 
-**Next Steps:** Reach out to our [Research Team](mailto:research@rxops.com) with your study proposal.
-
 ### 📋 **Common Prerequisites**
 
 **All Users:**
