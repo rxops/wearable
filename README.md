@@ -186,11 +186,8 @@ Choose your path based on your role and interests:
 - [Security & Compliance Guide](docs/security.md)
 - [API Reference Documentation](docs/api/)
 
-**Support Channels:**
-- 📧 General: support@rxops.com
-- 💬 Community: [Discord Server](link)
-- 📚 Documentation: [Wiki](link)
-- 🐛 Issues: [GitHub Issues](https://github.com/rxops/wearable/issues)
+**Discusssion:**
+- 📧 General: info@rxops.org
 
 ## Hardware Components and Sensor Roles
 
