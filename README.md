@@ -73,14 +73,14 @@ Choose your path based on your role and interests:
 
 ### 🔧 **For Hardware Developers & Makers**
 
-**Quick Start - Build Your First Prototype**
-1. **Gather Components** (Est. cost: $45-60)
-   - Seeed XIAO ESP32-C6 microcontroller ($7)
-   - MAX30102 pulse oximeter sensor ($8)
-   - MLX90632 temperature sensor ($15)
-   - BMI270 motion sensor ($12)
-   - 3.7V LiPo battery 200mAh ($8)
-   - Basic prototyping materials ($10-15)
+**Quick Start - Build Prototype**
+1. **Gather Components**
+   - Seeed XIAO ESP32-C6 microcontroller
+   - MAX30102 pulse oximeter sensor
+   - MLX90632 temperature sensor
+   - BMI270 motion sensor
+   - 3.7V LiPo battery 200mAh
+   - Basic prototyping materials
 
 2. **Assembly Steps**
    - Follow our [Hardware Assembly Guide](docs/hardware-assembly.md)
