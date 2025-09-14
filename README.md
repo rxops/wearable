@@ -95,8 +95,6 @@ Choose your path based on your role and interests:
    # Follow platform-specific setup in README
    ```
 
-**Next Steps:** Join our [Hardware Discord](link) for assembly support and PCB fabrication tips.
-
 ### 💻 **For Software Developers**
 
 **SDK Integration - Start Developing in Minutes**
@@ -127,8 +125,6 @@ Choose your path based on your role and interests:
    - Custom alert configurations
    - FHIR-compliant data export
 
-**Next Steps:** Check out our [SDK Documentation](docs/sdk/) and [example applications](examples/).
-
 ### 🏥 **For Healthcare Professionals**
 
 **Evaluation & Pilot Programs**
@@ -148,8 +144,6 @@ Choose your path based on your role and interests:
    - Remote patient monitoring workflows
    - Alert customization for your protocols
    - Compliance documentation (HIPAA, FDA)
-
-**Next Steps:** Contact our [Healthcare Solutions Team](mailto:healthcare@rxops.com) for personalized consultation.
 
 ### 🔬 **For Researchers & Academics**
 
@@ -636,21 +630,6 @@ Once the prototype is complete, the next steps include:
 - Exploring partnerships for commercial production and distribution.
 
 Contributions and feedback are welcome to advance this project.
-
-## Contributing
-
-We welcome contributions! Suggested first steps:
-1. Open an issue describing feature/bug (use labels: `enhancement`, `firmware`, `sdk`, `documentation`).
-2. Discuss design (attach sequence or state diagrams if architectural).
-3. Fork & create a feature branch: `feature/<short-description>`.
-4. Provide tests / sample data where applicable.
-5. Submit PR referencing issue; fill checklist (lint passes, docs updated, no secrets committed).
-
-Future addition: a dedicated `CONTRIBUTING.md` with coding standards, OpenAPI contribution steps, and firmware build instructions.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Summary
 
