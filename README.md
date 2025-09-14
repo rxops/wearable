@@ -97,7 +97,7 @@ Choose your path based on your role and interests:
 
 ### 💻 **For Software Developers**
 
-**SDK Integration - Start Developing in Minutes**
+**SDK Integration**
 1. **Install the SDK**
    ```bash
    npm install @rxops/wearable-sdk
