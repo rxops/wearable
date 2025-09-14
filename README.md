@@ -108,6 +108,9 @@ The wearable device can be configured in different sizes for various use cases, 
 
 These dimensions ensure cost-effective design, easy fabrication, and adaptability to different body sizes and healthcare scenarios.
 
+  <img width="auto" height="200" alt="image" src="assets/diy-my-first-biceps-band-2-15-minutes-v0-1x0atzuwmita1.webp" />
+  <img width="auto" height="200" alt="image" src="assets/il_fullxfull.7129883805_t9j4.webp" />
+
 ## Optional Features
 
 ### Display Integration
